@@ -122,4 +122,29 @@ $(function() {
         });
       });
     });
+
+
+    describe('Feed Mutation', function() {
+      var feed;
+
+      beforeEach(function () {
+        feed = {
+          name: 'example',
+          url: 'https://feeds.example.com/'
+        };
+      });
+
+      it('should be able to add new feed', function () {
+        addFeed(feed);
+        var index = $.inArray(feed, allFeeds);
+        expect(index).toBeGreaterThan(-1);
+      })
+
+      it('should be able to add new feed', function () {
+        addFeed(feed);
+        removeFeed(feed);
+        var index = $.inArray(feed, allFeeds);
+        expect(index).toBe(-1);
+      });
+    });
 }());
