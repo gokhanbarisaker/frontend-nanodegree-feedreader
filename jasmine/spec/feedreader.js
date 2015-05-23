@@ -134,12 +134,16 @@ $(function() {
         };
       });
 
+      /* it ensures a new feed can be added
+       */
       it('should be able to add new feed', function () {
         addFeed(feed);
         var index = $.inArray(feed, allFeeds);
         expect(index).toBeGreaterThan(-1);
-      })
+      });
 
+      /* it ensures a new feed can be added
+       */
       it('should be able to add new feed', function () {
         addFeed(feed);
         removeFeed(feed);
