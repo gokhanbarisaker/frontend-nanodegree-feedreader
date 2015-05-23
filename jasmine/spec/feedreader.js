@@ -27,46 +27,99 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* it loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+         it('should contain a valid url', function () {
+           allFeeds.forEach(function (feed) {
+             expect(feed.url).toBeTruthy();
+           });
+         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* it loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+         it('should contain a valid name', function() {
+           allFeeds.forEach(function (feed) {
+             expect(feed.name).toBeTruthy();
+           });
+         });
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    describe('The menu', function () {
+      var menuIcon;
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+      beforeEach(function (){
+        menuIcon = $('.menu-icon-link');
+      });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+      /* it ensures the menu element is
+       * hidden by default.
+       */
+      it('should cantain a hidden menu element by default', function () {
+        expect($('.menu-hidden').length).toEqual(1);
+      });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+      /* it ensures the menu changes
+       * visibility when the menu icon is clicked. This test
+       * should have two expectations: does the menu display when
+       * clicked and does it hide when clicked again.
+       */
+      it('should toggle menu', function () {
+        menuIcon.trigger('click');
+        expect($('.menu-hidden').length).toEqual(0);
 
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test wil require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+        menuIcon.trigger('click');
+        expect($('.menu-hidden').length).toEqual(1);
+      });
+    });
 
-    /* TODO: Write a new test suite named "New Feed Selection"
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+    describe('Initial entries', function () {
+
+      beforeEach(function (done) {
+        loadFeed(0, function () {
+          done();
+        });
+      });
+
+      /* it ensures when the loadFeed
+       * function is called and completes its work, there is at least
+       * a single .entry element within the .feed container.
+       */
+      it('should contain at least one entry after loading feed', function () {
+        expect($('.feed').children().length).toBeGreaterThan(0);
+      });
+    });
+
+
+    describe('New Feed Selection', function () {
+      var feedIndex;
+
+      beforeEach(function (done) {
+        feedIndex = 0;
+        loadFeed(feedIndex, function () {
+          done();
+        });
+      });
+
+      /* it ensures when a new feed is loaded
+       * by the loadFeed function that the content actually changes.
+       * Remember, loadFeed() is asynchronous.
+       */
+      it('should update feed contents with each new feed selection', function (done) {
+        var artifactChildren = $('.feed').children();
+        feedIndex++;
+        loadFeed(feedIndex, function () {
+          var successorChildren = $('.feed').children();
+          expect(successorChildren).not.toBe(artifactChildren);
+
+          done();
+        });
+      });
+    });
 }());
