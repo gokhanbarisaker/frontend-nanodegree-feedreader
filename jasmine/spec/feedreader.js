@@ -137,16 +137,29 @@ $(function() {
       /* it ensures a new feed can be added
        */
       it('should be able to add new feed', function () {
-        addFeed(feed);
+        var lengthOld = allFeeds.length;
+        var lengthNew = addFeed(feed);
+
+        // Expect an increase in quantity
+        expect(lengthOld + 1).toBe(lengthNew);
+
+        // Expect the added feed to be among allFeeds
         var index = $.inArray(feed, allFeeds);
         expect(index).toBeGreaterThan(-1);
       });
 
       /* it ensures a new feed can be added
        */
-      it('should be able to add new feed', function () {
-        addFeed(feed);
-        removeFeed(feed);
+      it('should be able to remove existing feed with given index', function () {
+        // Ensure, we have at least 1 feed on the list
+        var length = addFeed(feed);
+        var lastFeedIndex = lengthOld - 1;
+        var feedRemoved = removeFeed(lastFeedIndex);
+
+        // Expect a decrease in quantity
+        expect(length - 1).toBe(allFeeds.length);
+
+        // Expect the removed feed not to be among allFeeds
         var index = $.inArray(feed, allFeeds);
         expect(index).toBe(-1);
       });
