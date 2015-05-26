@@ -9,3 +9,11 @@ Feed mutation,
 
   removal,
     Existing feeds can be removed from application
+
+
+
+
+How to run
+================================================================================
+
+Open index.html with your favorite browser
