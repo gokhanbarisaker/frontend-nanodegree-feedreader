@@ -112,10 +112,10 @@ $(function() {
        * Remember, loadFeed() is asynchronous.
        */
       it('should update feed contents with each new feed selection', function (done) {
-        var artifactChildren = $('.feed').children();
+        var artifactChildren = $('.feed .entry');
         feedIndex++;
         loadFeed(feedIndex, function () {
-          var successorChildren = $('.feed').children();
+          var successorChildren = $('.feed .entry');
           expect(successorChildren).not.toBe(artifactChildren);
 
           done();
@@ -146,6 +146,10 @@ $(function() {
         // Expect the added feed to be among allFeeds
         var index = $.inArray(feed, allFeeds);
         expect(index).toBeGreaterThan(-1);
+
+        // Expect the duplicate element insertion to be filtered
+        var lengthAfterDuplicate = addFeed(feed);
+        expect(lengthAfterDuplicate).toBe(lengthNew);
       });
 
       /* it ensures a new feed can be added
