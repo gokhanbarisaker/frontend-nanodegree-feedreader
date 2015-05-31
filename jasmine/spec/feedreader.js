@@ -84,9 +84,7 @@ $(function() {
     describe('Initial entries', function () {
 
       beforeEach(function (done) {
-        loadFeed(0, function () {
-          done();
-        });
+        loadFeed(0, done);
       });
 
       /* it ensures when the loadFeed
