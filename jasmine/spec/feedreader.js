@@ -52,16 +52,18 @@ $(function() {
 
     describe('The menu', function () {
       var menuIcon;
+      var body;
 
       beforeEach(function (){
         menuIcon = $('.menu-icon-link');
+        body = $('body');
       });
 
       /* it ensures the menu element is
        * hidden by default.
        */
       it('should cantain a hidden menu element by default', function () {
-        expect($('.menu-hidden').length).toEqual(1);
+        expect(body.hasClass('menu-hidden')).toBeTruthy();
       });
 
       /* it ensures the menu changes
@@ -71,10 +73,10 @@ $(function() {
        */
       it('should toggle menu', function () {
         menuIcon.trigger('click');
-        expect($('.menu-hidden').length).toEqual(0);
+        expect(body.hasClass('menu-hidden')).toBeFalsy();
 
         menuIcon.trigger('click');
-        expect($('.menu-hidden').length).toEqual(1);
+        expect(body.hasClass('menu-hidden')).toBeTruthy();
       });
     });
 
