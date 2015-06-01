@@ -112,11 +112,22 @@ $(function() {
        * Remember, loadFeed() is asynchronous.
        */
       it('should update feed contents with each new feed selection', function (done) {
-        var artifactChildren = $('.feed .entry');
+        var artifactChildren = $('.feed .entry h2');
+        var artifactChildrenTitles = $.map(artifactChildren, function(element) {
+          return $(element).text();
+        });
+
         feedIndex++;
+
         loadFeed(feedIndex, function () {
-          var successorChildren = $('.feed .entry');
-          expect(successorChildren).not.toBe(artifactChildren);
+          var successorChildren = $('.feed .entry h2');
+          var successorChildrenTitles = $.map(successorChildren, function(element) {
+            return $(element).text();
+          });
+
+          var diff = $(successorChildrenTitles).not(artifactChildrenTitles).get();
+
+          expect(diff.length).not.toBe(0);
 
           done();
         });
