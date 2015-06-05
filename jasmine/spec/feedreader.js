@@ -31,22 +31,22 @@ $(function() {
      * in the allFeeds object and ensures it has a URL defined
      * and that the URL is not empty.
      */
-     it('should contain a valid url', function () {
-       allFeeds.forEach(function (feed) {
-         expect(feed.url).toBeTruthy();
-       });
-     });
+    it('should contain a valid url', function () {
+      allFeeds.forEach(function (feed) {
+        expect(feed.url).toBeTruthy();
+      });
+    });
 
 
     /* it loops through each feed
      * in the allFeeds object and ensures it has a name defined
      * and that the name is not empty.
      */
-     it('should contain a valid name', function() {
-       allFeeds.forEach(function (feed) {
-         expect(feed.name).toBeTruthy();
-       });
-     });
+    it('should contain a valid name', function() {
+      allFeeds.forEach(function (feed) {
+        expect(feed.name).toBeTruthy();
+      });
+    });
   });
 
 
