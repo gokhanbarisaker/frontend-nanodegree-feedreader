@@ -92,7 +92,7 @@ $(function() {
      * a single .entry element within the .feed container.
      */
     it('should contain at least one entry after loading feed', function () {
-      expect($('.feed').children().length).toBeGreaterThan(0);
+      expect($('.feed .entry').length).toBeGreaterThan(0);
     });
   });
 
