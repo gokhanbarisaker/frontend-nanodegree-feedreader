@@ -163,7 +163,7 @@ $(function() {
       expect(lengthAfterDuplicate).toBe(lengthNew);
     });
 
-    /* it ensures a new feed can be added
+    /* it ensures a new feed can be removed
      */
     it('should be able to remove existing feed with given index', function () {
       // Ensure, we have at least 1 feed on the list
