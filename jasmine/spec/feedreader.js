@@ -102,9 +102,7 @@ $(function() {
 
     beforeEach(function (done) {
       feedIndex = 0;
-      loadFeed(feedIndex, function () {
-        done();
-      });
+      loadFeed(feedIndex, done);
     });
 
     /* it ensures when a new feed is loaded
